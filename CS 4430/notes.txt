@@ -1,0 +1,13 @@
+:: 1203-01-07 ::
+Class overview and available resources.
+4430 and 5430 are the sections for the course (I am in 4430); no practical difference within the class, though.
+"DBMS": Database Management Software
+"Database"
+We are not concerned with the content of the database: only the structure. DBMS is the software which is used to manage the database. From now on, when we talk about a database, we are talking about the DBMS, not the content.
+Databases are everywhere.
+"IDG": International Data Group
+Most CS Jobs are DB related.
+The job of a computer is to keep a record of history.
+using: "MySQL", though HW assignments can be done in any ORM DBMS.
+using: Whatever language we want, but Java is the default for this class.
+this class: How to Use a Database System (DBMS): Theory, SQL, data model, application development, database design, XML.
