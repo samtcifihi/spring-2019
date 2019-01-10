@@ -11,3 +11,15 @@ The job of a computer is to keep a record of history.
 using: "MySQL", though HW assignments can be done in any ORM DBMS.
 using: Whatever language we want, but Java is the default for this class.
 this class: How to Use a Database System (DBMS): Theory, SQL, data model, application development, database design, XML.
+
+:: 1203-01-09 ::
+Uses: Web Searching, Data Mining, Scientific and Medical Databases, Integrating Information
+Databases are the only areas yet found in which Turing-completness is not required for a language to make sense. Succinct programming, but subject to query optimization problems.
+SQL is very specialized.
+Databases often suffers from "Concurrency Control Problems" whenat two or more actions conflict and need to be resolved.
+The OS mangages computer resources and provides a common environment for programs to be written for. The OS is applications on the kernel, which is on the CPU, the Memory, and the Devices.
+Databases provide Data Independence, Security, Concurrency Resolution, Backup/Recoverery, and Easy CRUD with SQL.
+"Data Model": Mathematical Representation of Data, Operations on Data, Constraints
+The Relational Data Model is the most commonly-used model.
+The Relational Model is a table. The table has a name: the Relation Name. The Column headers are Attributes, the rows are Tuples.
+Table == Relation in this class.
