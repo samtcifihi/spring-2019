@@ -1,0 +1,43 @@
+:: 1203-01-0X ::
+set: unordered collection of objects
+Roster Notation
+Set-Builder Notation
+Sets can be elements of other sets.
+The empty set is NOT equal to to a set containing the empty set.
+A = B iff for all x, all x taken from A == all x taken from B.
+"Proper Subset": if A is a subset of B, but A != B, A is a Proper Subset of B.
+"Power Set": The set of all subsets of  a set A is the power set of A. If a set has n elements, the cardinality of the power set is 2^n.
+Tuple.
+Ordered n-tuple.
+2-tuples are called ordered pairs.
+Cartesian Product (Cross Product)
+logical conjuction symbol looks like an "A" for "and"
+union symbol looks like a "U"
+Relations: A subset R of A cartesian-product B is called a relation...
+"Set Operations": Things to do to sets to get new sets.
+"Union"
+"Intersection"
+"Complement": Complement of A is all x in the Universe such that x !IN A.
+"Difference" (aka: complement of B with respect to A)
+"Identity Laws"
+"Domination Laws"
+"Idempotent Laws"
+"Complementation Law"
+"Commutative Laws"
+"Associative Laws"
+"Distributive Laws"
+"De Morgan's Laws" proof of the second
+"Absorption Laws"
+"Complement Laws"
+One way to prove an identity is to show that each is a subset of the other.
+"Membership Table"
+"Function" (many to one relation)
+"Range": What you actually map to
+"Codomain": What you can map to
+"Image"
+"Preimage"
+range v. codomain
+"Injective Function": one-to-one
+"Surjective Function": iff every element in B has a preimage.
+"Bijective Function": iff it is injective AND surjective
+"Composition" like the Chain Rule from Calculus
