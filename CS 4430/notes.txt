@@ -11,3 +11,54 @@ The job of a computer is to keep a record of history.
 using: "MySQL", though HW assignments can be done in any ORM DBMS.
 using: Whatever language we want, but Java is the default for this class.
 this class: How to Use a Database System (DBMS): Theory, SQL, data model, application development, database design, XML.
+
+:: 1203-01-09 ::
+Uses: Web Searching, Data Mining, Scientific and Medical Databases, Integrating Information
+Databases are the only areas yet found in which Turing-completness is not required for a language to make sense. Succinct programming, but subject to query optimization problems.
+SQL is very specialized.
+Databases often suffers from "Concurrency Control Problems" whenat two or more actions conflict and need to be resolved.
+The OS mangages computer resources and provides a common environment for programs to be written for. The OS is applications on the kernel, which is on the CPU, the Memory, and the Devices.
+Databases provide Data Independence, Security, Concurrency Resolution, Backup/Recoverery, and Easy CRUD with SQL.
+"Data Model": Mathematical Representation of Data, Operations on Data, Constraints
+The Relational Data Model is the most commonly-used model.
+The Relational Model is a table. The table has a name: the Relation Name. The Column headers are Attributes, the rows are Tuples.
+Table == Relation in this class.
+
+:: 1203-01-12 ::
+"Set": unordered series of elements without duplicates.
+"List": ordered series of elements.
+"Bag" (Multi-set): unordered series of elements.
+"Attribute": Atomic Value
+"Tuple": a List of Attribute Values.
+"Relation": a Set of Tuples.
+"Atomic": unbreakable.
+"Relation Schema": Relation name and attribute list. Optionally types of attributes.
+"Database": collection of relations
+"Database Schema": ...
+Relations are  a very simple model and often matches how we intuit about data, also the basis of SQL.
+Example:	Beers(*name, manf)
+		Bars(*name, addr, license)
+		Drinkers(*name, addr, phone)
+		Likes(*drinker, *beer)
+		Sells(*bar, *beer, price)
+		Frequents(*drinker, *bar)
+		(* == key)
+SQL is primarily a query language, for getting information from a database, but it also inludes a "data-definition" component for describing database schema.
+"SQL-1"
+"SQL-2"
+"SQL-3"
+"DBQL"
+"DDL"
+"DML"
+Creating (Declaring) a Relation: "CREATE TABLE <name> (<list of elements>);
+Deleting a Relation: "DROP TABLE <name>;
+The most basic element is an attribute and its type.
+The most commont types are INT/INTEGER, REAL/FLOAT, CHAR(n) (string of n characters), VARCHAR(n) (variable-length string of up to n characters)
+Example:	CREATE TABLE Sells (
+			bar	CHAR(20),
+			beer	VARCHAR(20),
+			price	REAL
+		);
+Integers and reals are represented as you would expect; strings require single quotes. Any variable can take the value of NULL. It is not the same as empty string.
+Two single quotes make a single real quote.
+DATE and TIME are types in SQL. The form of a date value is "DATA 'yyyy-mm-dd'"

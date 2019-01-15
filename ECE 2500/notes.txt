@@ -4,3 +4,9 @@
 "Port": Register which can talk to the outside world.
 "ALU": Arithmatic Logic Unit
 "Bus": moves data between registers in parallel.
+
+:: 1203-01-0X ::
+The Digital World
+Next Week: Boolean Algebra
+Claude Shannon invented the word "bit" from "Basic Information Digit" in 1948.
+Werner Buchholz invented the word "byte".
