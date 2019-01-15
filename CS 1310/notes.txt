@@ -41,3 +41,20 @@ range v. codomain
 "Surjective Function": iff every element in B has a preimage.
 "Bijective Function": iff it is injective AND surjective
 "Composition" like the Chain Rule from Calculus
+
+:: 1203-01-0X ::
+Functions v. Relations
+A function from set A to Set B may be repressented as a set of ordered pairs where one element of each pair is drawn from the domain, and the other from the co-domain.
+A function can be injective (1-1), surjective (onto), or bijective (invertible).
+A relation on a set S may be thought of as a subset of S cross-product S.
+"Partial Order": A relation which is Reflexive, Anti-symetric, Transitive.
+A relation R on S can be empty, and the set S can be empty.
+Binary Relation: A binary relation R from set A to set B is a subset R [...] A cross B. A binary rrelation R on a sset A is a subset of A cross A or a relation from A to A.
+There will be 4 properties: Reflexive, Symmetric, Antisymettric, and Transitive.
+"Reflexive Relation": A relation R on a set is reflexive iff "(a, a) taken-from-the-set R for every element a taken-from-the-set A." or "R is reflexive iff for all x taken from U, (x, x) is-taken-from-the-set R".
+"Symmetric Relation": R is symmeetric iff (b,a) taken from the set Rr whenever (a,b) taken fromt he set R for all (a, b) taken from set A.
+"Antisymmetric Relation": "A relation R on a set A such that for all (a, b) taken-from A, if (a, b) taken-from R and (b, a) taken-from R, then a = b" or "univ x univ y [(x, y) taken-from R conjunct (y, x) taken-from R, implies x = y]"
+"Transitive Relation": "univ x univ y univ z[(x, y) takenfrom R conjunt R (y, z) takenfrom R implies (x, z) takenfrom R]
+"Partial Ordering": A relation R on a set S is called a partial ordering or partial order if it si reflexive, antisymmetric, and transitive. A set together with a partial ordering R is called a partially ordered set or "poset", and is denoted by (S, R). Members of S are claled elements of the poset.
+"Lattice": ...
+"Poset": Partially Ordered Set
