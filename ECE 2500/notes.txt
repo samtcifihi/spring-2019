@@ -1,0 +1,6 @@
+:: 1203-01-08 ::
+"CUDA": Complete Unified Device Architecture
+"Registers" on Thursday
+"Port": Register which can talk to the outside world.
+"ALU": Arithmatic Logic Unit
+"Bus": moves data between registers in parallel.
