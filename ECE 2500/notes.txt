@@ -10,3 +10,9 @@ The Digital World
 Next Week: Boolean Algebra
 Claude Shannon invented the word "bit" from "Basic Information Digit" in 1948.
 Werner Buchholz invented the word "byte".
+
+:: 1203-01-13 ::
+Optical Disk Storage.
+ASCII and Unicode.
+Binary Arithmetic.
+Twos Complement. An x's b Complement is the friend of x with respect to b, digit by digit, multiplied by -1.
