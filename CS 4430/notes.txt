@@ -62,3 +62,39 @@ Example:	CREATE TABLE Sells (
 Integers and reals are represented as you would expect; strings require single quotes. Any variable can take the value of NULL. It is not the same as empty string.
 Two single quotes make a single real quote.
 DATE and TIME are types in SQL. The form of a date value is "DATA 'yyyy-mm-dd'"
+
+:: 1203-01-14 ::
+No upper limit to "n" for CHAR and VARCHAR in the standard.
+Data Type: "DATETIME" local time.
+Data Type: "TIMESTAMP" UTC time.
+Primary Keys
+Unique Keys
+Single Attribute Keys:
+		CREATE TABLE Beers {
+			name	CHAR(20) UNIQUE,
+			manf	CHAR(20)
+		};
+Multiattribute Keys:
+		CREATE TABLE Sells {
+			bar	CHAR(20),
+			beer	VARCHAR(20)
+			price	REAL,
+			PRIMARY KEY (bar, beer)
+		};
+Only one "PRIMARY KEY" per table. Once a attribute has been declared as part of the primary key, it is required to have a value.
+No limit to the number of "UNIQUE" keywords per table. Null value is admissable.
+Semistructured Data: A data model based on trees with the goal of providing a flexible representation of data and enabling the sharing of documents among systems and databases.
+Relational Algebra: Basic Operations; Algebra of Bags
+Example Tables (many-to-many relationship) ("*" for a key):
+	Students(*WIN, FN, LN, ADDRESS, ...)
+	Courses(*CID, NAME, HOURS)
+	Enrolled (*WIN, *CID, GRADE)
+5 Basic Operations:
+	Selection: sigma_theta R, where R is a set of tuples, theta operateson R and returns true or false.
+	Projection: pi_A,B R
+	Product: R x S
+	Union: R union S
+	Difference: R - S
+3 Derived Operations:
+	Intersection: R intersect S == R - (R - S)
+	Join: R |><|_theta S == sigma_theta (R x S)
