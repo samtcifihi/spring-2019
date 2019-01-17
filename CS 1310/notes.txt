@@ -42,7 +42,7 @@ range v. codomain
 "Bijective Function": iff it is injective AND surjective
 "Composition" like the Chain Rule from Calculus
 
-:: 1203-01-0X ::
+:: 1203-01-13 ::
 Functions v. Relations
 A function from set A to Set B may be repressented as a set of ordered pairs where one element of each pair is drawn from the domain, and the other from the co-domain.
 A function can be injective (1-1), surjective (onto), or bijective (invertible).
@@ -58,3 +58,13 @@ There will be 4 properties: Reflexive, Symmetric, Antisymettric, and Transitive.
 "Partial Ordering": A relation R on a set S is called a partial ordering or partial order if it si reflexive, antisymmetric, and transitive. A set together with a partial ordering R is called a partially ordered set or "poset", and is denoted by (S, R). Members of S are claled elements of the poset.
 "Lattice": ...
 "Poset": Partially Ordered Set
+
+:: 1203-01-15 ::
+Propositions v. Predicates
+A Propositions may be either True of False.
+Propositional Equivalences.
+Key Logical Equivalences (need the rest from slides):
+Identity: p^T == p, p v F == p
+Domination Laws:	p v T == T,	p ^ F == F
+Idempotent laws:	p v p == p,	p ^ p == p
+Double Negation Law:	!(!p)
