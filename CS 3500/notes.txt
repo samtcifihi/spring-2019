@@ -41,3 +41,9 @@ Caching
 An application stack will include an Operating System, Web Server Software, Database, and Scripting Language for Dynamic Requests.
 We will use the XAMPP software stack to run a website on a localhost which can include Win/Linux/OSX, Apache Server, Maria DB (MySQL)...
 Next Week: How to make web pages.
+
+:: 1203-01-15 ::
+<em>: emphasis
+<code>: tag for code formatting
+<mark>: Highlighting
+<strong>: like bold, but important to article/page
