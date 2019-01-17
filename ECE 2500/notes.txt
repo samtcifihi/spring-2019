@@ -16,3 +16,8 @@ Optical Disk Storage.
 ASCII and Unicode.
 Binary Arithmetic.
 Twos Complement. An x's b Complement is the friend of x with respect to b, digit by digit, multiplied by -1.
+
+:: 1203-01-13 ::
+Hamming Codes
+Boolean Algebra
+
