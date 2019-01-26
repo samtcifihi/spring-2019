@@ -68,3 +68,11 @@ Identity: p^T == p, p v F == p
 Domination Laws:	p v T == T,	p ^ F == F
 Idempotent laws:	p v p == p,	p ^ p == p
 Double Negation Law:	!(!p)
+Negation Laws:		p v !p == T;
+
+:: 1203-01-1X ::
+Proving Equivalences
+Commutative Lws
+Associative Lws
+Distributive Laws:
+Absorption Laws:

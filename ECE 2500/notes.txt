@@ -21,3 +21,9 @@ Twos Complement. An x's b Complement is the friend of x with respect to b, digit
 Hamming Codes
 Boolean Algebra
 
+:: 1203-01-1X ::
+Conjunction: "*"
+Disjunction: "+"
+Negation: "'"
+XOR is useful for adding numbers.
+Boolean Funcyions and Logic Circuits.
