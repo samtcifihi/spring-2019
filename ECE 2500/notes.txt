@@ -26,4 +26,89 @@ Conjunction: "*"
 Disjunction: "+"
 Negation: "'"
 XOR is useful for adding numbers.
-Boolean Funcyions and Logic Circuits.
+Boolean Functions and Logic Circuits.
+
+:: 1203-01-25 ::
+There are 5 possible circuits.
+
+:: 1203-02-07 ::
+hw 4 tonight.
+
+:: 1203-02-17 ::
+binary decoder
+active low v active high
+MUXs and DeMUXs
+
+:: 1203-02-19 ::
+Lab Assessment Topics: minterms, K-maps, 74xx chips, Logisim, and VHDL.
+	Open Book/Notes
+ROM: programable truth table.
+Decoder Transistor Array
+
+:: 1203-02-22 ::
+NOR flash (like EPROM) can acess individual Bytes
+NAND flash can only access blocks of memory (used in mp3 players)
+PGA: Programmable Gate Array
+	Dots show connetions, no dot, no connection
+
+:: 1203-02-24 ::
+RAM
+Capacity Forumulas
+	C = 2^n m b
+	C = 2^n B
+	C = 2^n (m/8)B
+Kilo: 2^10
+Mega: 2^20
+Giga: 2^30
+Tera: 2^40
+Ram Types:
+	SRAM		Static RAM
+	DRAM		Dynamic RAM
+	SDRAM
+	DDR SDRAM
+	LPDDR SDRAM
+	GDDR
+
+:: 1203-03-10 ::
+	SRAM		Static RAM
+	DRAM		Dynamic RAM
+	SDRAM		Synchronous Dynamic RAM
+	DDR SDRAM
+	LPDDR SDRAM
+	GDDR
+DDR2: 2x more.
+LPDDR4: Low power 4x more.
+iPhones and Androids
+	Mobile Communication Device
+ARM: developed by "Advanced Risc Machines, Ltd."
+
+:: 1203-03-12 ::
+Latches
+	Present State
+	Next State
+	Send a 1 to the 0-gate and 0 to the 1-gate in order to flip the state.
+	Send a 1 to both gates to hold the state.
+	"01": "Set" to 1
+	"10": "Reset" to 0
+Latch with Enable (clock) (flip-flop)
+	E: 0 for No Change, 1 for Set or Reset.
+	D: 0 means Reset, 1 means Set
+
+:: 1203-03-17 ::
+nth clock period begins at t_n
+T = t_(n+1) - t_n
+f = 1/(Tc) (inverse of the period)
+Tc = 5Ms (5 is the value, M is the unit, s is the time)
+ALU
+toggle (in addition to No Change, Reset, and Set)
+State Machine Design
+
+:: 1203-03-19 ::
+D flip-flop vs. latch
+Homework 7 due Thursday
+
+:: 1203-04-02 ::
+Exam next Tuesday (in one week)
+
+:: 1203-04-04 ::
+Exam next Tuesday (rm D204/5)

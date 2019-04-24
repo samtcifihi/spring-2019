@@ -1,4 +1,4 @@
-:: 1203-01-07 ::
+: 1203-01-07 ::
 Class overview and available resources.
 4430 and 5430 are the sections for the course (I am in 4430); no practical difference within the class, though.
 "DBMS": Database Management Software
@@ -98,3 +98,410 @@ Example Tables (many-to-many relationship) ("*" for a key):
 3 Derived Operations:
 	Intersection: R intersect S == R - (R - S)
 	Join: R |><|_theta S == sigma_theta (R x S)
+	: R obelus S ==
+
+:: 1203-02-04 ::
+Theta denotes a logical T xor F.
+
+:: 1203-02-0E ::
+New Exam date: the last day of class before spring break.
+
+SELECT b1.name, b2.name
+FROM Beers b1, Beers b2
+WHERE b1.manf = b2.manf AND b1.name < b2.name;
+
+IN
+NOT IN
+
+:: 1203-02-16 ::
+delta: eleiminate duplicates from bags
+tau: sort tuples (only operator which returns neither a set nor a bag)
+gamma: grouping and aggregation
+Outerjoin: avoids "dangling tuples" (tuples which do not join wihth anything.
+Aggregation: SUM, COUNT, MAX, AVG
+"R1 := Y_L(R2)", where "L" is a list of elements that are either:
+	1. Individual (grouping) attributes.
+	2. AGG(A), where AGG is one of hte aggregation operators and A is an attribute.
+The COUNT of an empty set is 0.
+Normally NULLs are ignored in Aggregation.
+Division
+
+:: 1203-02-18 ::
+A "Modification" Command does not return a result (as a query does), but changes the database in some way.
+Three kinds of Modifications:
+	1. Insertion
+		"INSERT INTO <relation> VALUES();"
+			"INSERT INTO Likes(beer, drinker) VALUES('Bud', 'Sally');"
+		"INSERT INTO <relation> ( <subquery> ); ( <subquery> trans-imply <select statment>)"
+			INSERT INTO PotBuddies (SELECT d2.drinker FROM Frequents d1, Frequents d2 WHREE d1.drinker = 'Sally' AND d2.drinker <> 'Sally' AND...
+	2. Deletion
+		"DELETE FROM <relation> WHERE <condition>;"
+			DELETE FROM Likes WHERE drinker = 'Sally' and beer = 'Bud';
+		Delete all tuples: "DELETE FROM Likes;"
+	3. Updates
+		"UPDATE <relation> SET <list of attribute assignments> WHERE <condition on tuples>;"
+		Multiple: "UPDATE Sells SET price = 4.00 WHERE price > 4.00;"
+Division (EXCEPT)
+Aggregate Operators:		Distincts are optional and only count once per value no matter how many instances exist.
+	COUNT(*)		Count all
+	COUNT([DISTINCT] A)	Ignore nulls
+	SUM([DISTINCT] A)
+	AVG([DISTINCT] A)
+	MAX(A)
+GROUP BY
+HAVING
+	MIN(A)
+
+:: 1203-02-21 ::
+constraints:
+	Keys
+	Foreign Keys (referential integrity)
+	Value-based (constrain values ofa particular attribute.)
+	Tuple-based (relationship among components)
+	Assertions (any SQL boolean expression)
+Single attribute Keys
+	"PRIMARY KEY" or "UNIQUE" after the type
+Multiattribute Key.
+	PRIMARY KEY (bar, beer) );
+Foreign Key
+	Values apperaring in attributes of one relation must appear together in certain attributes of another relation.
+Expressing Foreign Keys
+	Use keyweord REFERENCES, either: 1, after an attribute (for one-attribute ckeys), or 2, as an elemtne of the schema: (FOREIGN KEY (<list of attributes>) REFERENCES <relation> (<attributes>))
+	Example:
+	CREATE TABLE Beers (
+		name	CHAR(20) PRIMARY KEY,
+		manf	CHAR(20)	);
+	CREATE TABLE Sells (
+		bar	CHAR(20),
+		beer	CHAR(20) REFERENCES Beers(name),
+		price	REAL	);
+	Example:
+	CREATE TABLE Beers (
+		name	CHAR(20)	PRMIMARY KEY,
+		manf	CHAR(20)	);
+	CREATE TABLE Sells (
+		bar	CHAR(20),
+		beer	CHAR(20),
+		price	REAL,
+		FOREIGN KEY(beer) REFERENCES Beers(name)	);
+Actions Taken (2)
+1. Default: Reject the modificaiotn
+2. Cascade: Make the same changes in Sells (deleted beer: delete Selells tuple.) (Updated beer: chang value in Sells)
+3. Set NULL: Change the beer to NULL
+Setting Policy:
+	CREATE TABLE Sells (
+		bar	CHAR(20),
+		beer	CHAR(20),
+		price	REAL,
+		FOREIGN KEY (beer) REFERENCES Beers(name) ON DELETE SET NULL ON UPDATE CASCADE.	);
+Attribute BAsed Check
+	CREATE TABLE Sells (
+		bar	CHARA(20),
+		beer	CHAR(20)	CHECK ( beer IN (SELECT name FROM Beers)),
+		price	REAL	CHECK ( price <= 5.00 )	);
+Tuple Based Check
+	CREATE TABLE SElls (
+		bar	CHAR(20),
+		beer	CHAR(20),
+		price	REAL,
+		CHECK (bar = 'Joe''s Bar' OR price <= 5.00)	);
+Assertions
+	These are databse-schema elemetns, like relations or views.
+	Defined by:
+		CREATE ASSERTION <name>
+			CHECK (<condition>);
+	Example
+		CREATE ASSERTION NoRipoffBars CHECK (NOT EXISATS (
+			SELECT bar FroM Sells
+			GROUP BY bar
+			HAVING 5.00 < AVG(price)
+		));
+	In preinciple we must check every assertion after every modification to any reltaion of the datablase.
+	A clever system can observe that only certain changes could cause a given asswertion to be violated.
+Triggers: Motivation:
+	Assertions are powerful, but the DBMS often can't tell when they need to be checked.
+Another name ofr "trigger is ECA rule or "event-condition-action" rule.
+	Event: Typlically a type of databasse modiication (eg: "insert on Sells")
+	Condition: Any SQL boolean-valued expression
+	Action: Any SQL statments.
+	Example:
+		CREATE TRIGGER beerTrig
+			AFTER INSERT ON Sells
+			REFERENCING NEW ROW AS NewTuple
+			FOR EACH ROW
+			WHEN (NewTuple.beer NOT IN
+				(SELECT name FROM Beers))
+			INSERT INTO Beers(name)
+				VALUES(NewTuple.beer);
+	Options: The Event:
+		CREATE TRIGGER BeerTrig
+			AFTER INSERT ON Sells
+			REFERENCING NEW ROW AS NewTuple
+			FOR EACH ROW
+			WHEN (NewTuple.beer NOT IN
+				(SELECT name FROM Beers))
+			INSERT INTO Beers(name...
+
+:: 1203-03-0E ::
+Views, Indexes, Authorization
+View: A relation defined in terms of other tables (called base tables).
+	Two Kinds:	Virtual: Not stored in the database; just a query for constructing the relation.
+			Materialized: Actually constructed and stored.
+	CREATE [MATERIALIZED] VIEW
+		<name> AS <query>;
+		(default is virtual)
+	CREATE VIEW CanDrink AS
+		SELECT drinker, beer
+		FROM Frequents, Sells
+		WHERE Frequents.bar = Sells.bar;
+	Accessing a View: Query a view as if it were a base table. Also a limited ability to modify views if it ;makes sense as a modification of owne underlying base table.
+		SELECT beer FROM CanDrink
+		WHERE drinker = 'Sally';
+	Generally cannot modify a virutal view, but an INSTEAD OF trigger lets us interpret view modifioncation in a way that makes sense.
+		CREATE VIEW Synergy AS
+			SELECT Likes.drinker, Likes.beer, Sells.bar
+			FROM Likes, Sells, Frequents
+			WHERE Likes.drinker = Frequents.drinker
+				AND Likes.beer = Sells.beer
+				AND Sells.bar = Frequents.bar;
+	We cannot inset into Synergy: it is a virtual view, but we can use INSTEAD OF trigger to turn a (dirnker, beer, bar) triple into three insertions of projected pairs, one for each of Likes,...
+		CREATE TRIGGER ViewTrig
+			INSTEAD OF INSERT ON Synergy
+			REFERENCING NEW ROW AS n
+			FOR EACH ROW
+			BEGIN
+				INSERT INTO LIKES VALUES(n.drinker, n.beer);
+				INSERT INTO SELLS(bar, beer) VALUES(n.bar, n.beer);
+				INSERT INTO FREQUENTS VALUES(n.drinker, n.bar);
+			END;
+WalMart stores every sale at every store in a DB. Overnight, the sales for the day are used to update a data warehouse: materialized views of the sales. The warehouse is used by analysts to predict trendsa nd move goods t o where they are selling best.
+Index: a data structure used to speed up access to tuples of a relation, given values of one or more attributes. Coul be a hash table, but in a DBMS it is always a balaanced search tree with giant nodes (a full disk page) called a B-tree. Index is not part of the SQL Standard.
+	Declaring Indexes: No Standard. Typical Syntax:
+		CREATE INDEX BeerInd ON
+			Beers(manf);
+		CREATE INDEX SellInd ON
+			Sells(bar, beer);
+	Using Indexes:
+		SELECT price FROM Beers, Sells
+		WHERE manf = 'Pete''s' AND
+			Beers.name = Sells.beer AND
+			bar = 'Joe''s Bar';
+A major problem in making  adatabase run fast is deciding which indexes to create. An index speeds up queries that can use it, but slows down all modifications on its relation because the index must be modified too.
+Tuning Advisors are a major research thrust because hand tuning is so hard. An advisor gets a query load.
+SQL Authorization
+	SQL identifies a more detailed set of privileges on objects (relations) than the typical file system. Nine priviligies in all, some of which can be restricted to one column of one relation.
+		Some important privileges on a relation.
+			SELECT: right to query the relation.
+			INSERT: right to insert tuples.
+			DELETE: right to delete tuples.
+			UPDATE: right to update tuples.
+	INSERT INTO Beers(name)
+		SELECT beer FROM Sells
+		WHERE NOT EXISTS
+			(SELECT * FROM Beers
+			WHERE name = beer);
+		We require priileges SELECT on Sells and Beers, and INSERT on Beers or Beers.name.
+The objects on which privileges exist include stored tables and views. Other privileges are the right to create objectws of a type (eg, triggers). Views form a n important tool for access control.
+Views as Access Contorl
+	We might not want to give the SELECT privilege on Emps(name, addr, salary). But it si saffer to give SELECT on
+	CRJEATE VIEW SafeEmps AS SELECT anme, addr, FROM...
+Authorization ID's
+	A user is refered to by authorization ID, typrically their login anem. There is an authorization ID PUBLIC. Granting a privilege to PUBLIC makes it ....
+To grant privileges, say:
+	GRANT <list of privileges>
+	ON <relation or other object>
+	TO <list of authorization ID's>;
+	If you want the recipients to be able to pass the privileges to others add:
+		WITH GRANT OPTION
+	GRANT UPDATE ON Sells TO sally
+	WITH GRANT OPTION;
+		Now sally not only can update any attribute of Sells, but can grant to others the privilege UPDATE ON Sells. Also, she can grant more specific privileges like UPDATE(price) ON Sells.
+Wemust append to the REVOKE staement either
+	CASCADE: Any grants made by a revoke are also not in force, no matter how far the privilege was passed.
+	RESTRICT: if the privilege has to bne passed theo othesr to REV"oKE fails.
+Grant Diagrams:
+	Nodes: user/privilge/grant option?/is owner?
+		UPDATE ON R< UPDATE(a) on R, and UPDATE() ON R live in different nodes.
+		...
+		Notation for Nodes:
+			AP for the node representing authorizaiton ID A having privilge P.
+
+:: 1203-03-11 ::
+Transaction: An atomic sequence of operations. (ACID)
+	Atomicity: Either complete the transaction, or revert to the prior state.
+	Consistency: isTrue(BeforeTransaction) == isTrue(AfterTransaction).
+	Isolation
+	Durability:
+Atomicity and Durability are two sides of the same coin, as are Consistency and Isolation.
+	Concurrency Control Module: Makes sure each transaction goes through without conflicting (Consistency and Isolation).
+	Recovery: Atomicity and Durability.
+SERIALIZE
+REPEATABLE READ
+The last statement in a transaction:
+	COMMIT
+	ROLLBACK
+
+:: 1203-03-16 ::
+	Standard: Persistent Sotred Modules
+	Oracle: PL/SQL
+Options
+	specialized language (PSM or PL/SQL)
+	SQL statments embedded in a host langel (C)
+	connection tools to allow a conventional lanugeage to acess a databse
+PSM (persistnent stored modules) allo0ws us to store procedures as database schema elemtns.
+PSM is part of SQL standard (SQL/PSM is the full name of the standard)
+Basic PSM form
+	CREATE PROCEDURE <name> (
+			j<parameeter list> )
+		j<optional local declarations>
+		j<body>;
+	Funciton alternative PSM form:
+		CREATE FUNCTION <name> (
+			<paramater list> ) RETURNS <type>
+A procedure does not return a value, a function does.
+PSM uses mode-name-type triples, wher ethe mode can be (IN (procedure uses value, does not change value), OUT (procedure changes: does not use), INOUT (both))
+CREATE PROCEDURE JoeMenu (
+	IN b	CHAR(20),
+	IN p	REAL
+)
+INSERT INTO Sells...
+use SQL/PSM "CALL" with the name of the desired procedure and arguments.
+	CALL JoeMenu('Moosedrool', 5.00);
+Kinds of PSM statements:
+	RETURN <expression>		(Does not terminate funciton exection)
+	DECLARE <name <type>
+	BEGIN ... END
+	Assignment Statments:
+		SET <variable> = <expression>;
+	Statment labels:
+		give a statement a label by prefixing a name and a colon.
+	IF Statments:
+		IF <condition> THEN
+			<statments(s)>
+		END IF;
+	Add ELSE <statment(s)> if desired, as
+		IF ... THEN ... ELSE ... END IF;
+	Add additional cases by ELSEIF
+		<statmente(s)> IF ... THEN ELSEIF THEN ... ELSEIF ... THEN ... ELSE .. END IF;
+		CREATE FUNCTION Rate (IN b CHAR(20) )
+				RETURNS CHAR(10)
+				DECLARE cust INTEGER;
+			BEGIN
+				SET cust = (SELECT COUNT(*) FROM Frequents
+					WHERE bar = b);
+				IF cust < 100 THEN RETURN 'unpopular'
+				ELSEIF cust < 200 THEN RETURN 'average'
+				ELSE RETURN 'popular'
+				ENDIF;
+			END;
+	Loops
+		<loop name>: LOOP <statements>
+			ENDLOOP;
+	Exit from a loop by:
+		LEAVE <loop name>
+	Other Loop Forms
+		WHILE <condition>
+			DO <statments>
+		END WHILE;
+		REPEAT <statements>
+			UNTIL <condition>
+		END REPEAT;
+Queries
+	General SELECT-FROM-WHERE queries are NOT permitted in PSM. There are 3 ways to get the effect of a query:
+		1. Queries producing one value can be the expression in an assignment.
+		2. Single-row SELECT ... INTO.
+		3. Cursors.
+Ex. of Assignment/Query
+	SET p = (SELECT price FROM Sells
+		WHERE bar = 'Joe''s Bar' AND
+			beer = 'Bud');
+A cursor is essentialy a tuple-bariable that ranges over all tuples int he result of osme query.
+	DECLARE c CURSOR FOR <query>;
+Cursor Loops
+PLSQL
+
+:: 1203-03-1X ::
+Database-Connection Libraries
+Server-side programming
+Client-side programming
+SQL injection (most popular attack to DBs)
+3 tiers of processors:
+	Web servers
+	Application servers
+	Database servers
+The database is, in many DB access lagnuages an environment.
+Database servers maintain some number of connections, so app servers can assk wquerkies or perform odification.s
+The app server issues statements, queries, and modifications, usually.
+Handles
+	SQLAllocHandle(T, I, O)
+	SQLExecuteDirect(H, S, L)
+JDBC
+PHP arrays
+	Associative Array
+
+:: 1203-03-21 ::
+Entity-Relationship Model
+jdbc
+	Java DB Connectivity
+DB Design
+	Requirement Analysis
+	Conceptual Design
+	Logical Design
+		Convert ER-Model to Relational Schema
+	Physical Design
+Entity Sets
+	Entity: Thing or object
+	Entity Set: Collection of similar entities (similar to a class)
+	Attribute: Property of (the entities of) an enitty set. (Attributes are simple avalues (int or char strings) not structs, sets, etc.
+Multiway Relationships
+	Sometimes we need a relationship that connects more thena two enttiy stes
+Suppose that drinekrs will on ly drink certain beers at certain basers
+		Our three binary relatinhps and Frequnts do not allow us to maek this distinction. But a 3-way reelationship model would.
+Many-to-One
+	Ex.: Student-to-Major (mostly)
+
+:: 1203-03-23 ::
+Weak Entity Sets
+	Double Rectangle
+	No primary Keys
+	one or more ManytoONe relationships to oterh (supporting ) entity sets. not every many-one relationships from a weak enitty set need to be supporting, but sporting relationships must have a rounded arrow.
+Design Techniques
+	1. Avoid Redundancy
+	2. Limit the sue of weak entity sets.
+	3. Don't use an enitty set when an attribute will do.
+Entity SEts Versus Attributes
+Don't overuse Weak Entity Sets.
+Using Nulls
+In class tutorial next class.
+
+:: 1203-04-03 ::
+Assignment 4 deadline extended: Next Monday (the 8th)
+Design Theory for Relational Databases
+Drinkers(name, addr, beersLiked, maf, favBeer)
+	Reasonable FD's to assert:
+		1. name -> addr favBeer
+			Note that this FD is the same as "name -> addr" and "name -> favBeer".
+		2. beersLiked -> manf
+K is a superkey for realtion R if K functionally determines all fo R
+K is a key for R if K is a superkey, but no proper subset of K is a superkey.
+(name, beersLiked) is a superkey because together thse attributes determine all other attribute. It's also a key.
+	name -> addr favBeer
+	beersLiked -> manf
+{name, beersLiked} is a key because neither {name} nor {beersLiked} is a superkey.
+	1. just assert a key K
+		The only FD's are "K -> A" for all attributes A
+	2. Assert FD's and deduce the keys by systematic exploration.
+Inference Test:
+	FD's are transitive.
+
+:: 1203-04-08 ::
+3NF and BCNF3NF and BCNF3NF and BCNF
+
+:: 1203-04-0X ::
+Presentations next Mon. and Wed.
+Then Final Exam
+Presentaiton
+	Demo of how the software works
+		Must focus on the DB features and functionality.
+		Whatever is valuable to share. Positive or Negative.
+		10 minutes.

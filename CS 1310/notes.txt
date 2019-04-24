@@ -76,3 +76,99 @@ Commutative Lws
 Associative Lws
 Distributive Laws:
 Absorption Laws:
+
+:: 1203-02-07 ::
+Quiz next Tues.
+Exam on 2/19 (d), NOT 2/12 (d).
+
+:: 1203-03-10 ::
+n C k (n choose k)
+	Order Doesn't Matter:	n! / k!(n-k)!
+n P k (permutations)
+	Order Matters:		n! / (n-k)!
+Pigeonhole principle:
+	Ceiling(n / k):		n pigeons, k pigeonholes.
+
+:: 1203-03-12 ::
+Binomial Coeficient Notation
+Probability of Being Dealt Trips in 5 card Draw:
+	choose rank: (13 choose 1)
+	choose 3 suits: (4 choose 3)
+	pick 2 cards (not a pair or another of the trips' rank): (12 choose 2)
+	(13 C 1) (4 C 3)(12 C 2)
+Binomial Theorem
+Probability of Being Dealt Two-pair in 5 Card Draw:
+	Mine: (is not right): (13 C 1) (4 C 2) (12 C 1) (4 C 2) (11 C 1) (4 C 1)
+	His: (13 C 2) (4 C 2) (4 C 2) (44 C 1) OR (13 C 2) ((4 C 3) (4 C 2) * 2)
+Probability of Being Dealt a boat in 5 Card Draw
+	(13 C 1) (4 C 3) (12 C 1) (4 C 2)
+Theorem 4 or Example 9
+
+:: 1203-03-17 ::
+raffle; 28 men, 21 women (49 total)
+	payoffs of distinct prizes (top 3): (49 P 3) = 49*48*47
+	identical prizes: (49 C 3) = (49*48*47) / 3!
+	distinct prizes and at least 1 man and 1 woman must win: (49 C 3) - (28 C 3) - (21 C 3)
+	first two prizes identical, last different: (49 C 1) (48 P 2)
+
+:: 1203-03-17 ::
+K_n:		Complete Graph
+C_n:
+W_n:
+Q_n:
+K_(m, n):
+Bipartite Graph
+Invariants:
+	degree sequence
+	cycles
+digraph: directed graph
+height (of a tree)
+balance (of a tree)
+"End", "Pre", and "Post"
+Trees and Subtrees
+A tree can be reconstructed with 2 traversals, but not with only 1.
+End-order: (left subtree, root, right subtree) GBF A MDCHE
+Pre-order: (Root, Left, Right) A BGF MCDHE
+Post-order: (Left, Right, Root) GFB MDHEC A
+Euler Path: A path that covers every vertex once.
+Euler Circuit: An Euler Path which begins and ends on the same vertex. (Chapter 10, Theorems 1 and 2)
+	A connected graph has an Euler Circuit iff all vertices have even degree.
+	A connected multigraph has an Euler path but not an Euler Circuit iff it has exactly 2 vertices of odd degree.
+Quiz, Review, Exam
+
+:: 1203-03-22 ::
+Invariants:
+	Degree Sequence
+	Cycles
+	Number of {Vertices, Edges}
+	Number of {Loops, Circuits}
+	Hamiltonian
+Balanced: path length difference is at most 1 across all leaves.
+
+:: 1203-03-24 ::
+	(x + y)^n
+	(n C k)(x^k)(y^(n-k))
+	Example:
+		(2x - 3y)^111
+		(-3^66)(2^45)(111 C 45)		//(x^45)(y^66)
+Probability of Being Dealt Two-pair in 5 Card Draw:
+	(13 C 2) (4 C 2) (4 C 2) (44 C 1)
+Probability of Being Dealt a Boat in 5 Card Draw:
+	(13 C 1) (4 C 3) (12 C 1) (4 C 2)
+Probability of Being Dealt a Straight Flush in 5 Card Draw:
+	Characterize each straight by its lowest card.
+13 Knights (14 people total) in the Round Table; Galahad and and Gawaine sitting next to Guinivere.
+	(12! / 12) * 2
+8 balls, 4 boxes
+	(11 C 3)
+	ceiling(8 / 5)
+
+:: 1203-04-04 ::
+April 16th (d): Senior Design
+Phrase-structure Grammar G=(V, T, S, P)
+	Vocabulary V, Subset T of V consisting of terminal symbols, A start sysmbol S from V, and a finite set of productions P.
+Backus-Naur Form
+
+:: 1203-04-09 ::
+Last Quiz on Thursday
+Right Regular Type 3 Grammer: "A -> Bb | b"

@@ -51,4 +51,145 @@ Next Week: How to make web pages.
 :: 1203-01-1X ::
 packages:	css3;	autofilename 
 
-:: 1203-01-20 ::
+:: 1203-01-25 ::
+Tables: "<thead>" (Table head)
+
+:: 1203-02-05 ::
+Forms
+
+:: 1203-02-07 ::
+Assignment 1 on 2/13 (z)
+normal-flow: top to bottom, with left to right within each vertically stacked section.
+position: static
+position: absolute
+position: relative
+position: fixed
+position: sticky
+
+:: 1203-02-10 ::
+Use as many pseudo-selectors as possible in the midterm.
+	https://www.w3schools.com/cssref/css_selectors.asp
+Floating Elements
+Stack Order
+"column-count"
+
+:: 1203-02-12 ::
+<meta> tag
+viewports
+responsive design patterns
+
+:: 1203-02-17 ::
+transform
+transition
+animation
+img:hover
+
+:: 1203-02-24 ::
+Using Javascript: <script type = "text/javascript" scr="jsexample.js" >
+using id to select
+css selectors
+.innerhtml: "document.getElementById("demo").innerHTML = "Paragraph changed!"
+DOM: Document Object Model
+appendChild: js function
+js events
+getElementById: var title = document.getElementById("pageTitle");
+
+:: 1203-03-10 ::
+-2 +1
+
+:: 1203-03-12 ::
+jQuery Examples
+	$("#pageTitle").text('Lab 10 jQuery: Share My Travel Photos');
+
+	$(#pageTitle).css("background-color", "lightgreen");
+
+	$("button").html("Show Descriptions");
+	$("img+p).css("background-color", "lightgreen");
+
+	$("button").addClass("btn-danger").removeClass("btn-primary");
+	$("features").addClass("jumbotron");
+
+	$("#pageTitle")
+		.on("click", function (e) {
+			$("#pageText").html("<h2> Ouch! You clicked me...");
+			})
+		.on("mousemove", function () {
+			$("#pageText").html("<h2> Ouch! You moved your mouse...");
+			})
+		.on("mouseleave", function () {
+			$("#pageText").html("<h2> Goodbye...");
+			})
+
+	$("#pageTitle")
+		.on("click", function (e) {
+			$("#stories").fadeOut(1000).fadeIn(1000).slideDown(1000);
+			})
+AJAX
+	Ascyncrhous JS and XML
+
+:: 1203-03-17 ::
+jQuery function:
+	$(document).ready(function()){
+		// Code here.
+	})
+jQuery Anonymous Function:
+	$(function(){
+		// Code here.
+	})
+PHP:
+	Free and Open Source
+	Example:
+		<!DOCTYPE html>
+		<html>
+		<head>
+			<title>Lab 11 PHP 1</title>
+		</head>
+		<body>
+			<h1>Lab11 PHP Fundamentals</h1>
+			
+			<?php
+			echo "hello from PHP local host <br>";
+			$count = 42;
+			echo $count;
+			$firstname = "John";
+			$lastName = "Smith";
+
+			print "Hello $firstname $lastName";
+			?>
+		</body>
+
+:: 1203-03-19 ::
+Project 1
+	Get updated project files.
+	look for empty space
+Project 2
+	Replacing image upon thumbnail click.
+		Event Listener: clickEvent
+		e.target (to figure out which image was clicked
+		manipulate with e.target.src
+		switch statment on title?
+	Infobox
+		opacity 0 to opacity 1.
+		mouse in and mouse out
+	Play with the transistion
+		caption.style.transistion = opacity 1.5s"
+		caption.style.opacity = 0x8
+		caption.innerHTML...
+Project 3
+	var caption + "<em>" + $e.trarget).
+	filters, Transisitons, and Animations
+		look in book
+
+:: 1203-03-22 ::
++2
+Superglobal Arrays
+
+:: 1203-03-24 ::
+Web Hosting Service: Must support PHP and MySQL.
+include
+require
+
+:: 1203-04-0E ::
+Tuesday: Final Project due; Presentation
+Thursday: Complete Presentations
+"prepare" statement on the backend or sanitize inputs
